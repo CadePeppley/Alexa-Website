@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexa Location App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Alexa Location App</h1>
+</header>
+
+<nav>
+    <a href="javascript:void(0)" onclick="openTab('Home')">Home</a>
+    <a href="javascript:void(0)" onclick="openTab('IoT')">IoT</a>
+    <a href="javascript:void(0)" onclick="openTab('Data')">Data</a>
+</nav>
+
+<!-- Content -->
+<div id="Home" class="tab-content">
+    <div class="circle-animation" id="circle1"></div>
+    <div class="circle-animation" id="circle2"></div>
+    <div class="circle-animation" id="circle3"></div>
+    <h2>Welcome to the Future of Location Services</h2>
+    
+    <section>
+        <h3>Key Features</h3>
+    </br>
+        <ul>
+            <li>Real-time Location Tracking</li>
+            <li>Integration with Smart Home Devices</li>
+            <li>Personalized Location Recommendations</li>
+            <li>Advanced Analytics and Reporting</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Why Choose Our App?</h3>
+        <p>Our Alexa Location App goes beyond traditional location services. Here's why you should choose us:</p>
+        <ul>
+            <li>Seamless Integration with Amazon Alexa</li>
+            <li>Enhanced Security and Privacy Features</li>
+            <li>Intelligent IoT Integration for a Smarter Home</li>
+            <li>User-Friendly Interface</li>
+        </ul>
+    </section>
+   
+    <section>
+        <h3>Current Investors</h3>
+        <p>We are proud to have the support of the following investors:</p>
+        <ul>
+            <li>Investor 1</li>
+            <li>Investor 2</li>
+            <li>Investor 3</li>
+        </ul>
+    </section>
+   
+    <section>
+        <h3>Get Started Today</h3>
+        <p>Ready to experience the future of location services? Download our app now and take control of your home and personal space.</p>
+        <button>Download Now</button>
+    </section>
+</div>
+
+<div id="IoT" class="tab-content">
+    <div class="circle-animation2" id="circle1"></div>
+    <div class="circle-animation2" id="circle2"></div>
+    <div class="circle-animation2" id="circle3"></div>
+    <h2>IoT (Internet of Things)</h2>
+    <p>Learn about how our application utilizes IoT technology to enhance location services.</p>
+</div>
+
+<div id="Data" class="tab-content">
+    <div class="circle-animation" id="circle1"></div>
+    <div class="circle-animation" id="circle2"></div>
+    <div class="circle-animation" id="circle3"></div>
+    <h2>Data</h2>
+    <p>This tab will eventually display a SQL table. Placeholder content for now.</p>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date Time</th>
+        </tr>
+        <!-- ... -->
+    </table>
+    
+</div>
+
+<script>
+    document.getElementById('Home').style.display = 'block';
+
+    function openTab(tabName) {
+        var i, tabContent;
+        tabContent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabContent.length; i++) {
+            tabContent[i].style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
+
+        if (tabName === 'Data') {
+            fetch('http://localhost/getdata')
+                .then(response => response.json())
+                .then(data => {
+                    const table = document.querySelector('#Data table');
+                    table.innerHTML = '<tr><th>ID</th><th>Name</th><th>Date Time</th></tr>';
+                    data.forEach(row => {
+                        table.innerHTML += `<tr><td>${row.id}</td><td>${row.name}</td><td>${row.date_time}</td></tr>`;
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    }
+</script>
+
+
+</body>
+</html>
