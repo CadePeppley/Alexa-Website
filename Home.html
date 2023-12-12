@@ -77,7 +77,6 @@
     <div class="circle-animation" id="circle2"></div>
     <div class="circle-animation" id="circle3"></div>
     <h2>Data</h2>
-    <p>This tab will eventually display a SQL table. Placeholder content for now.</p>
     <table border="1">
         <tr>
             <th>ID</th>
@@ -101,7 +100,7 @@
         document.getElementById(tabName).style.display = "block";
 
         if (tabName === 'Data') {
-            fetch('http://localhost/getdata')
+            fetch('https://cade.domainnameforclass.org/getdata')
                 .then(response => response.json())
                 .then(data => {
                     const table = document.querySelector('#Data table');
